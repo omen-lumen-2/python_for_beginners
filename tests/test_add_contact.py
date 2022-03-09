@@ -12,7 +12,7 @@ class TestAddContact(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def test_add_new_groups(self):
+    def test_add_new_contact(self):
         wd = self.wd
         self.open_authorize_page(wd)
         self.login(wd, login="admin", password="secret")
