@@ -14,9 +14,7 @@ class TestAddGroup(unittest.TestCase):
 
     def test_add_new_groups(self):
         wb = self.wb
-        self.open_authorize_page(wb)
         self.login(wb, login="admin", password="secret")
-        self.open_groups_page(wb)
         self.create_group(wb, Group(name="test name", header="test header", footer="test footer"))
         self.open_groups_page(wb)
         self.logout(wb)
@@ -25,6 +23,8 @@ class TestAddGroup(unittest.TestCase):
         wb.find_element_by_link_text("Logout").click()
 
     def create_group(self, wb, group):
+        # open groups page
+        wb.find_element_by_link_text("groups").click()
         # move to create new group
         wb.find_element_by_name("new").click()
         # set values of new group
@@ -44,6 +44,8 @@ class TestAddGroup(unittest.TestCase):
         wb.find_element_by_link_text("groups").click()
 
     def login(self, wb, login, password):
+        # open authorize page
+        wb.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
         # input login
         wb.find_element_by_name("user").click()
         wb.find_element_by_name("user").clear()
@@ -55,9 +57,6 @@ class TestAddGroup(unittest.TestCase):
         wb.find_element_by_name("pass").send_keys(password)
         # submit
         wb.find_element_by_xpath("//input[@value='Login']").click()
-
-    def open_authorize_page(self, wb):
-        wb.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
 
     def is_element_present(self, how, what):
         try:

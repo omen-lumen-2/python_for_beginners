@@ -14,7 +14,6 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_new_contact(self):
         wd = self.wd
-        self.open_authorize_page(wd)
         self.login(wd, login="admin", password="secret")
         self.create_new_contact(wd, Contact(
             firstname="Test_first_name",
@@ -49,6 +48,8 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def login(self, driver, login, password):
+        # open authorize page
+        driver.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
         # input login
         driver.find_element_by_name("user").click()
         driver.find_element_by_name("user").clear()
@@ -60,9 +61,6 @@ class TestAddContact(unittest.TestCase):
         driver.find_element_by_name("pass").send_keys(password)
         # submit
         driver.find_element_by_xpath("//input[@value='Login']").click()
-
-    def open_authorize_page(self, driver):
-        driver.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
 
     def is_element_present(self, how, what):
         try:
