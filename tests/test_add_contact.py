@@ -13,23 +13,25 @@ class TestAddContact(unittest.TestCase):
         self.wd.implicitly_wait(30)
 
     def test_add_new_contact(self):
-        wd = self.wd
-        self.login(wd, login="admin", password="secret")
-        self.create_new_contact(wd, Contact(
+        self.login(login="admin", password="secret")
+        self.create_new_contact(Contact(
             firstname="Test_first_name",
             middlename="Test_middle_name",
             email="test@test.test"
         ))
-        self.go_to_home_page(wd)
-        self.logout(wd)
+        self.go_to_home_page()
+        self.logout()
 
-    def logout(self, wd):
+    def logout(self):
+        wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def go_to_home_page(self, wd):
+    def go_to_home_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("home").click()
 
-    def create_new_contact(self, wd, contact):
+    def create_new_contact(self, contact):
+        wd = self.wd
         # move to create new contact
         wd.find_element_by_link_text("add new").click()
         # input firstname
@@ -47,20 +49,21 @@ class TestAddContact(unittest.TestCase):
         # submit
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def login(self, driver, login, password):
+    def login(self,login, password):
+        wd = self.wd
         # open authorize page
-        driver.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
+        wd.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
         # input login
-        driver.find_element_by_name("user").click()
-        driver.find_element_by_name("user").clear()
-        driver.find_element_by_name("user").send_keys(login)
-        driver.find_element_by_id("LoginForm").click()
+        wd.find_element_by_name("user").click()
+        wd.find_element_by_name("user").clear()
+        wd.find_element_by_name("user").send_keys(login)
+        wd.find_element_by_id("LoginForm").click()
         # input password
-        driver.find_element_by_name("pass").click()
-        driver.find_element_by_name("pass").clear()
-        driver.find_element_by_name("pass").send_keys(password)
+        wd.find_element_by_name("pass").click()
+        wd.find_element_by_name("pass").clear()
+        wd.find_element_by_name("pass").send_keys(password)
         # submit
-        driver.find_element_by_xpath("//input[@value='Login']").click()
+        wd.find_element_by_xpath("//input[@value='Login']").click()
 
     def is_element_present(self, how, what):
         try:

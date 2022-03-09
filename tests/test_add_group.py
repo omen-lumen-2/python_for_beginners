@@ -13,16 +13,17 @@ class TestAddGroup(unittest.TestCase):
         self.wb.implicitly_wait(30)
 
     def test_add_new_groups(self):
-        wb = self.wb
-        self.login(wb, login="admin", password="secret")
-        self.create_group(wb, Group(name="test name", header="test header", footer="test footer"))
-        self.open_groups_page(wb)
-        self.logout(wb)
+        self.login(login="admin", password="secret")
+        self.create_group( Group(name="test name", header="test header", footer="test footer"))
+        self.open_groups_page()
+        self.logout()
 
-    def logout(self, wb):
+    def logout(self):
+        wb = self.wb
         wb.find_element_by_link_text("Logout").click()
 
-    def create_group(self, wb, group):
+    def create_group(self, group):
+        wb = self.wb
         # open groups page
         wb.find_element_by_link_text("groups").click()
         # move to create new group
@@ -40,10 +41,12 @@ class TestAddGroup(unittest.TestCase):
         # approve creation new group
         wb.find_element_by_name("submit").click()
 
-    def open_groups_page(self, wb):
+    def open_groups_page(self):
+        wb = self.wb
         wb.find_element_by_link_text("groups").click()
 
-    def login(self, wb, login, password):
+    def login(self, login, password):
+        wb = self.wb
         # open authorize page
         wb.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
         # input login
