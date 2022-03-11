@@ -3,7 +3,7 @@ import pytest
 from fixture.application import Application
 
 
-@pytest.fixture(scope='class')
+@pytest.fixture(scope='session')
 def app(request):
     """ Fixture for work with class Application in each test function"""
     application = Application()
