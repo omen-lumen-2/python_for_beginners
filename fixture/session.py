@@ -6,7 +6,7 @@ class Session:
     def login(self, login, password):
         wd = self.app.wd
         # open authorize page
-        wd.get("http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1")
+        wd.get("http://localhost/addressbook/")
         # input login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
@@ -22,3 +22,4 @@ class Session:
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
+        wd.find_element_by_name("user")
