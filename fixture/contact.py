@@ -1,3 +1,8 @@
+from random import randint
+
+from model.сontact import Contact
+
+
 class ContactHelper:
     def __init__(self, app):
         self.app = app
@@ -47,4 +52,14 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@name='searchstring']").click()
         # go to home page
         self.app.navigation.go_to_home_page()
+
+    def contact_must_exist(self):
+        wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        # create contact if contact not exist
+        if len(wd.find_elements_by_xpath("//input[@name='selected[]']")) == 0:
+            self.create(contact=Contact(firstname=f"Test_name{randint(1,100)}",
+                                  middlename=f"Test_middlename{randint(1,100)}",
+                                  email=f"{randint(1,100)}@test.test"))
 

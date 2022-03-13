@@ -1,11 +1,16 @@
+from random import randint
+
+from model.group import Group
+
+
 class GroupHelper:
     def __init__(self, app):
         self.app = app
 
     def fill_group_form(self, group):
         self.app.action.type_in_input_field_with_name(name="group_name", input_value=group.name)
-        self.app.action.type_in_input_field_with_name(name="group_name", input_value=group.header)
-        self.app.action.type_in_input_field_with_name(name="group_name", input_value=group.footer)
+        self.app.action.type_in_input_field_with_name(name="group_header", input_value=group.header)
+        self.app.action.type_in_input_field_with_name(name="group_footer", input_value=group.footer)
 
 
     def create(self, group):
@@ -46,3 +51,13 @@ class GroupHelper:
         wd.find_element_by_xpath("//input[@name='delete']").click()
         # open groups page
         self.app.navigation.go_to_group_page()
+
+    def group_must_exist(self):
+        wd = self.app.wd
+        # open groups page
+        self.app.navigation.go_to_group_page()
+        # create group if group not exist
+        if len(wd.find_elements_by_xpath("//input[@name='selected[]']")) == 0:
+            self.create(group=Group(name=f"Test_name{randint(1,100)}",
+                                    header=f"Test_header{randint(1,100)}",
+                                    footer=f"Test_footer{randint(1,100)}"))
