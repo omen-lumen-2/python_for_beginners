@@ -1,5 +1,6 @@
 from selenium import webdriver
 
+from fixture.common_action import CommonAction
 from fixture.contact import ContactHelper
 from fixture.group import GroupHelper
 from fixture.navigation import Navigation
@@ -14,6 +15,7 @@ class Application:
         self.group = GroupHelper(self)
         self.navigation = Navigation(self)
         self.contact = ContactHelper(self)
+        self.action = CommonAction(self)
 
     def wd_quit(self):
         self.wd.quit()

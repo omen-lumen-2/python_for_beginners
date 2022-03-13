@@ -2,46 +2,34 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def fill_contact_group_form(self, contact):
+        self.app.action.type_in_input_field_with_name(name="firstname", input_value=contact.firstname)
+        self.app.action.type_in_input_field_with_name(name="middlename", input_value=contact.middlename)
+        self.app.action.type_in_input_field_with_name(name="email", input_value=contact.email)
+
     def create(self, contact):
         wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
         # move to create new contact
         wd.find_element_by_link_text("add new").click()
-        # input firstname
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.firstname)
-        # input middlename
-        wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(contact.middlename)
-        # input email
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(contact.email)
+        # fill contact group
+        self.fill_contact_group_form(contact)
         # submit
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
     def update_first_contact(self, contact):
         wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
         # select edit in first element of table
         wd.find_element_by_xpath("//img[@title='Edit']/..").click()
-        # input firstname
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.firstname)
-        # input middlename
-        wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(contact.middlename)
-        # input email
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(contact.email)
+        # fill contact group
+        self.fill_contact_group_form(contact)
         # submit
         wd.find_element_by_xpath("//input[@name='update']").click()
         # click in dialog to return home page
         wd.find_element_by_xpath("//div[@class='msgbox']//a").click()
-
 
     def delete_first_contact(self):
         wd = self.app.wd
