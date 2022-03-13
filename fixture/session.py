@@ -11,7 +11,6 @@ class Session:
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(login)
-        wd.find_element_by_id("LoginForm").click()
         # input password
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
