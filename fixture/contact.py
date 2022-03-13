@@ -33,6 +33,8 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
         # select first contact in list of exist contacts
         wd.find_element_by_xpath("//input[@name='selected[]']").click()
         # select DELETE
