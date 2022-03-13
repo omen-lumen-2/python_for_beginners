@@ -17,6 +17,8 @@ class ContactHelper:
         self.fill_contact_group_form(contact)
         # submit
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # go to home page
+        self.app.navigation.go_to_home_page()
 
     def update_first_contact(self, contact):
         wd = self.app.wd
@@ -43,4 +45,6 @@ class ContactHelper:
         wd.switch_to.alert.accept()
         # wait update screen
         wd.find_element_by_xpath("//input[@name='searchstring']").click()
+        # go to home page
+        self.app.navigation.go_to_home_page()
 

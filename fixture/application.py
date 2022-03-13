@@ -10,7 +10,7 @@ from fixture.session import Session
 class Application:
     def __init__(self):
         self.wd = webdriver.Firefox()
-        self.wd.implicitly_wait(30)
+        self.wd.implicitly_wait(5)
         self.session = Session(self)
         self.group = GroupHelper(self)
         self.navigation = Navigation(self)
@@ -19,3 +19,13 @@ class Application:
 
     def wd_quit(self):
         self.wd.quit()
+
+    def is_not_valid(self):
+        try:
+            self.wd.current_url
+            return False
+        except:
+            return True
+
+
+
