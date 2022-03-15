@@ -6,13 +6,25 @@ from model.group import Group
 
 def test_update_group(app):
     app.group.group_must_exist()
-    app.group.update_first_group(group=Group(
+    old_groups = app.group.get_group_list()
+    group = Group(
         name="test update name",
         header="test update header",
-        footer="test update footer")
+        footer="test update footer",
+        id=old_groups[0].id
     )
-
+    app.group.update_first_group(group=group)
+    new_groups = app.group.get_group_list()
+    assert len(old_groups) == len(new_groups)
+    old_groups[0] = group
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 def test_update_only_name_of_group(app):
     app.group.group_must_exist()
-    app.group.update_first_group(group=Group(name=f"test update name{randint(1,100)}"))
+    old_groups = app.group.get_group_list()
+    group = Group(name=f"test update name{randint(1,100)}", id=old_groups[0].id)
+    app.group.update_first_group(group=group)
+    new_groups = app.group.get_group_list()
+    assert len(old_groups) == len(new_groups)
+    old_groups[0] = group
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)

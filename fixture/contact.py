@@ -9,6 +9,7 @@ class ContactHelper:
 
     def fill_contact_group_form(self, contact):
         self.app.action.type_in_input_field_with_name(name="firstname", input_value=contact.firstname)
+        self.app.action.type_in_input_field_with_name(name="lastname", input_value=contact.lastname)
         self.app.action.type_in_input_field_with_name(name="middlename", input_value=contact.middlename)
         self.app.action.type_in_input_field_with_name(name="email", input_value=contact.email)
 
@@ -63,3 +64,14 @@ class ContactHelper:
                                   middlename=f"Test_middlename{randint(1,100)}",
                                   email=f"{randint(1,100)}@test.test"))
 
+    def get_contact_list(self):
+        wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        contacts = []
+        for elements in wd.find_elements_by_xpath("//tr[@name='entry']"):
+            firstname = elements.find_element_by_xpath(".//td[3]").text
+            lastname = elements.find_element_by_xpath(".//td[2]").text
+            id = elements.find_element_by_name("selected[]").get_attribute('value')
+            contacts.append(Contact(firstname=firstname, lastname=lastname, id=id))
+        return contacts

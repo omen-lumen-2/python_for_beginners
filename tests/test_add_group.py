@@ -5,12 +5,31 @@ from model.group import Group
 
 
 def test_add_new_group(app):
-    app.group.create(group=Group(name="test name", header="test header", footer="test footer"))
+    old_groups = app.group.get_group_list()
+    group = Group(name="test name", header="test header", footer="test footer")
+    app.group.create(group=group)
+    new_groups = app.group.get_group_list()
+    assert len(old_groups) + 1 == len(new_groups)
+    old_groups.append(group)
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
 def test_add_empty_group(app):
-    app.group.create(group=Group())
+    old_groups = app.group.get_group_list()
+    group = Group()
+    app.group.create(group=group)
+    new_groups = app.group.get_group_list()
+    assert len(old_groups) + 1 == len(new_groups)
+    group.name = ''
+    old_groups.append(group)
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
 def test_add_group_if_pass_only_name(app):
-    app.group.create(group=Group(name=f"Name{randint(1,100)}"))
+    old_groups = app.group.get_group_list()
+    group = Group(name=f"Name{randint(1,100)}")
+    app.group.create(group=group)
+    new_groups = app.group.get_group_list()
+    assert len(old_groups) + 1 == len(new_groups)
+    old_groups.append(group)
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)

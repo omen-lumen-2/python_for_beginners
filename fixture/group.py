@@ -61,3 +61,14 @@ class GroupHelper:
             self.create(group=Group(name=f"Test_name{randint(1,100)}",
                                     header=f"Test_header{randint(1,100)}",
                                     footer=f"Test_footer{randint(1,100)}"))
+
+    def get_group_list(self):
+        wd = self.app.wd
+        # open groups page
+        self.app.navigation.go_to_group_page()
+        groups = []
+        for elements in wd.find_elements_by_xpath("//span[@class='group']"):
+            text = elements.text
+            id = elements.find_element_by_name("selected[]").get_attribute('value')
+            groups.append(Group(name=text, id=id))
+        return groups
