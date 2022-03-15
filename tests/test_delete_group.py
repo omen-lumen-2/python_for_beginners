@@ -2,7 +2,7 @@
 from model.group import Group
 
 
-def test_add_new_groups(app):
+def test_delete_groups(app):
     app.group.group_must_exist()
     old_groups = app.group.get_group_list()
     app.group.delete_first_group()
