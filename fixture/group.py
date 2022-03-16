@@ -28,12 +28,12 @@ class GroupHelper:
         # invalidate group cash
         self.group_cash = None
 
-    def update_first_group(self, group):
+    def update_group_by_index(self, group, index):
         wd = self.app.wd
         # open groups page
         self.app.navigation.go_to_group_page()
-        # select first group in list of exist group
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        # select group in list of exist group by index
+        self.select_group_by_index(index)
         # select Edit GROUP
         wd.find_element_by_xpath("//input[@name='edit']").click()
         # set new values
@@ -45,12 +45,12 @@ class GroupHelper:
         # invalidate group cash
         self.group_cash = None
 
-    def delete_first_group(self):
+    def delete_group_by_index(self, index):
         wd = self.app.wd
         # open groups page
         self.app.navigation.go_to_group_page()
-        # select first group in list of exist group
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        # select group in list of exist group by index
+        self.select_group_by_index(index)
         # select DELETE GROUP(s)
         wd.find_element_by_xpath("//input[@name='delete']").click()
         # open groups page
@@ -58,8 +58,11 @@ class GroupHelper:
         # invalidate group cash
         self.group_cash = None
 
-    def group_must_exist(self):
+    def select_group_by_index(self, index):
         wd = self.app.wd
+        wd.find_elements_by_xpath(f"//input[@name='selected[]']")[index].click()
+
+    def group_must_exist(self):
         # open groups page
         self.app.navigation.go_to_group_page()
         # create group if group not exist

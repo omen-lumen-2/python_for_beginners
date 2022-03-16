@@ -28,12 +28,12 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
-    def update_first_contact(self, contact):
+    def update_contact_by_index(self, contact, index):
         wd = self.app.wd
         # go to home page
         self.app.navigation.go_to_home_page()
-        # select edit in first element of table
-        wd.find_element_by_xpath("//img[@title='Edit']/..").click()
+        # select edit element of table by index
+        wd.find_elements_by_xpath("//img[@title='Edit']/..")[index].click()
         # fill contact group
         self.fill_contact_group_form(contact)
         # submit
@@ -43,12 +43,12 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
-    def delete_first_contact(self):
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         # go to home page
         self.app.navigation.go_to_home_page()
-        # select first contact in list of exist contacts
-        wd.find_element_by_xpath("//input[@name='selected[]']").click()
+        # select contact in list of exist contacts by index
+        wd.find_elements_by_xpath("//input[@name='selected[]']")[index].click()
         # select DELETE
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # submit deleting on dialog
