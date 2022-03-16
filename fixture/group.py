@@ -25,6 +25,8 @@ class GroupHelper:
         wd.find_element_by_name("submit").click()
         # open groups page
         self.app.navigation.go_to_group_page()
+        # invalidate group cash
+        self.group_cash = None
 
     def update_first_group(self, group):
         wd = self.app.wd
@@ -40,6 +42,8 @@ class GroupHelper:
         wd.find_element_by_name("update").click()
         # open groups page
         self.app.navigation.go_to_group_page()
+        # invalidate group cash
+        self.group_cash = None
 
     def delete_first_group(self):
         wd = self.app.wd
@@ -51,24 +55,33 @@ class GroupHelper:
         wd.find_element_by_xpath("//input[@name='delete']").click()
         # open groups page
         self.app.navigation.go_to_group_page()
+        # invalidate group cash
+        self.group_cash = None
 
     def group_must_exist(self):
         wd = self.app.wd
         # open groups page
         self.app.navigation.go_to_group_page()
         # create group if group not exist
-        if len(wd.find_elements_by_xpath("//input[@name='selected[]']")) == 0:
+        if self.get_count_group() == 0:
             self.create(group=Group(name=f"Test_name{randint(1,100)}",
                                     header=f"Test_header{randint(1,100)}",
                                     footer=f"Test_footer{randint(1,100)}"))
 
-    def get_group_list(self):
+    def get_count_group(self):
         wd = self.app.wd
-        # open groups page
-        self.app.navigation.go_to_group_page()
-        groups = []
-        for elements in wd.find_elements_by_xpath("//span[@class='group']"):
-            text = elements.text
-            id = elements.find_element_by_name("selected[]").get_attribute('value')
-            groups.append(Group(name=text, id=id))
-        return groups
+        return len(wd.find_elements_by_xpath("//input[@name='selected[]']"))
+
+    group_cash = None
+
+    def get_group_list(self):
+        if self.group_cash is None:
+            wd = self.app.wd
+            # open groups page
+            self.app.navigation.go_to_group_page()
+            self.group_cash = []
+            for elements in wd.find_elements_by_xpath("//span[@class='group']"):
+                text = elements.text
+                id = elements.find_element_by_name("selected[]").get_attribute('value')
+                self.group_cash.append(Group(name=text, id=id))
+        return self.group_cash.copy()

@@ -12,8 +12,8 @@ def test_update_contact(app):
                       email="test@test.test",
                       id=old_contacts[0].id)
     app.contact.update_first_contact(contact=contact)
+    assert len(old_contacts) == app.contact.get_count_contact()
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) == len(new_contacts)
     old_contacts[0] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
@@ -25,7 +25,7 @@ def test_update_only_firstname_of_contact(app):
                       lastname=old_contacts[0].lastname,
                       id=old_contacts[0].id)
     app.contact.update_first_contact(contact=contact)
+    assert len(old_contacts) == app.contact.get_count_contact()
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) == len(new_contacts)
     old_contacts[0] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)

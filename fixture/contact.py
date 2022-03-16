@@ -25,6 +25,8 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         # go to home page
         self.app.navigation.go_to_home_page()
+        # invalidate contact cash
+        self.contact_cash = None
 
     def update_first_contact(self, contact):
         wd = self.app.wd
@@ -38,6 +40,8 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@name='update']").click()
         # click in dialog to return home page
         wd.find_element_by_xpath("//div[@class='msgbox']//a").click()
+        # invalidate contact cash
+        self.contact_cash = None
 
     def delete_first_contact(self):
         wd = self.app.wd
@@ -53,25 +57,34 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@name='searchstring']").click()
         # go to home page
         self.app.navigation.go_to_home_page()
+        # invalidate contact cash
+        self.contact_cash = None
 
     def contact_must_exist(self):
         wd = self.app.wd
         # go to home page
         self.app.navigation.go_to_home_page()
         # create contact if contact not exist
-        if len(wd.find_elements_by_xpath("//input[@name='selected[]']")) == 0:
+        if self.get_count_contact() == 0:
             self.create(contact=Contact(firstname=f"Test_name{randint(1,100)}",
                                   middlename=f"Test_middlename{randint(1,100)}",
                                   email=f"{randint(1,100)}@test.test"))
 
-    def get_contact_list(self):
+    def get_count_contact(self):
         wd = self.app.wd
-        # go to home page
-        self.app.navigation.go_to_home_page()
-        contacts = []
-        for elements in wd.find_elements_by_xpath("//tr[@name='entry']"):
-            firstname = elements.find_element_by_xpath(".//td[3]").text
-            lastname = elements.find_element_by_xpath(".//td[2]").text
-            id = elements.find_element_by_name("selected[]").get_attribute('value')
-            contacts.append(Contact(firstname=firstname, lastname=lastname, id=id))
-        return contacts
+        return len(wd.find_elements_by_xpath("//input[@name='selected[]']"))
+
+    contact_cash = None
+
+    def get_contact_list(self):
+        if self.contact_cash is None:
+            wd = self.app.wd
+            # go to home page
+            self.app.navigation.go_to_home_page()
+            self.contact_cash = []
+            for elements in wd.find_elements_by_xpath("//tr[@name='entry']"):
+                firstname = elements.find_element_by_xpath(".//td[3]").text
+                lastname = elements.find_element_by_xpath(".//td[2]").text
+                id = elements.find_element_by_name("selected[]").get_attribute('value')
+                self.contact_cash.append(Contact(firstname=firstname, lastname=lastname, id=id))
+        return self.contact_cash.copy()
