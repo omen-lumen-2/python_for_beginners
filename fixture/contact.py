@@ -11,7 +11,16 @@ class ContactHelper:
         self.app.action.type_in_input_field_with_name(name="firstname", input_value=contact.firstname)
         self.app.action.type_in_input_field_with_name(name="lastname", input_value=contact.lastname)
         self.app.action.type_in_input_field_with_name(name="middlename", input_value=contact.middlename)
+        self.app.action.type_in_input_field_with_name(name="address", input_value=contact.address)
+        # phone
+        self.app.action.type_in_input_field_with_name(name="home", input_value=contact.homephone)
+        self.app.action.type_in_input_field_with_name(name="work", input_value=contact.workphone)
+        self.app.action.type_in_input_field_with_name(name="mobile", input_value=contact.mobilephone)
+        self.app.action.type_in_input_field_with_name(name="phone2", input_value=contact.secondaryphone)
+        # email
         self.app.action.type_in_input_field_with_name(name="email", input_value=contact.email)
+        self.app.action.type_in_input_field_with_name(name="email2", input_value=contact.email2)
+        self.app.action.type_in_input_field_with_name(name="email3", input_value=contact.email3)
 
     def create(self, contact):
         wd = self.app.wd
@@ -33,7 +42,7 @@ class ContactHelper:
         # go to home page
         self.app.navigation.go_to_home_page()
         # select edit element of table by index
-        wd.find_elements_by_xpath("//img[@title='Edit']/..")[index].click()
+        self.open_contact_for_edit_by_index(index)
         # fill contact group
         self.fill_contact_group_form(contact)
         # submit
@@ -83,8 +92,51 @@ class ContactHelper:
             self.app.navigation.go_to_home_page()
             self.contact_cash = []
             for elements in wd.find_elements_by_xpath("//tr[@name='entry']"):
-                firstname = elements.find_element_by_xpath(".//td[3]").text
-                lastname = elements.find_element_by_xpath(".//td[2]").text
                 id = elements.find_element_by_name("selected[]").get_attribute('value')
-                self.contact_cash.append(Contact(firstname=firstname, lastname=lastname, id=id))
+                lastname = elements.find_element_by_xpath(".//td[2]").text
+                firstname = elements.find_element_by_xpath(".//td[3]").text
+                address = elements.find_element_by_xpath(".//td[4]").text
+                all_email_address = elements.find_element_by_xpath(".//td[5]").text
+                all_phones = elements.find_element_by_xpath(".//td[6]").text.splitlines()
+                self.contact_cash.append(Contact(id=id, firstname=firstname, lastname=lastname, address=address,
+                            all_email_address=all_email_address, all_phones=all_phones))
         return self.contact_cash.copy()
+
+    def get_contact_info_from_home_page(self, index):
+        wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        row_table = wd.find_element_by_xpath(f"//tr[@name='entry'][{index+1}]")
+        id = row_table.find_element_by_name("selected[]").get_attribute('value')
+        lastname = row_table.find_element_by_xpath(".//td[2]").text
+        firstname = row_table.find_element_by_xpath(".//td[3]").text
+        address = row_table.find_element_by_xpath(".//td[4]").text
+        all_email_address = row_table.find_element_by_xpath(".//td[5]").text
+        all_phones = row_table.find_element_by_xpath(".//td[6]").text
+        return Contact(id=id, firstname=firstname, lastname=lastname, address=address,
+                       all_email_address=all_email_address, all_phones=all_phones)
+
+    def open_contact_for_edit_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_xpath("//img[@title='Edit']/..")[index].click()
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_for_edit_by_index(index)
+        id = wd.find_element_by_name('id').get_attribute('value')
+        firstname = wd.find_element_by_name("firstname").get_attribute('value')
+        lastname = wd.find_element_by_name("lastname").get_attribute('value')
+        address = wd.find_element_by_name("address").text
+        # phone
+        homephone = wd.find_element_by_name("home").get_attribute('value')
+        workphone = wd.find_element_by_name("work").get_attribute('value')
+        mobilephone = wd.find_element_by_name("mobile").get_attribute('value')
+        secondaryphone = wd.find_element_by_name("phone2").get_attribute('value')
+        # email
+        email = wd.find_element_by_name("email").get_attribute('value')
+        email2 = wd.find_element_by_name("email2").get_attribute('value')
+        email3 = wd.find_element_by_name("email3").get_attribute('value')
+        return Contact(id=id, firstname=firstname, lastname=lastname, address=address,
+                       homephone=homephone, workphone=workphone, mobilephone=mobilephone, secondaryphone=secondaryphone,
+                       email=email, email2=email2, email3=email3)
+
