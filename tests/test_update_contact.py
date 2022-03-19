@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from random import randrange
 
-from common.data_generator import random_int, random_email
+from common.data_generator import random_int, random_email, random_string
 from model.сontact import Contact
 
 
@@ -11,8 +11,8 @@ def test_update_contact(app):
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
     index = 0
-    contact = Contact(firstname=f"Test_first_name{random_int()}",
-                      lastname=f"Test_lastname{random_int()}",
+    contact = Contact(firstname=random_string(prefix='firstname', maxlen=5),
+                      lastname=random_string(prefix='lastname', maxlen=5),
                       email=random_email(),
                       email2=random_email(),
                       email3=random_email())
@@ -33,7 +33,7 @@ def test_update_only_firstname_of_contact(app):
     app.contact.contact_must_exist()
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(firstname=f"Update_first_name{random_int()}")
+    contact = Contact(firstname=random_string(prefix='firstname', maxlen=5))
     # When
     app.contact.update_contact_by_index(contact=contact, index=index)
     # Then

@@ -32,9 +32,15 @@ class Contact:
     def __eq__(self, other):
         if type(self) != type(other):
             return False
-        return (self.id is None or other.id == None or self.id == other.id) and self.firstname == other.firstname\
-               and self.lastname == other.lastname and\
-               (self.address == other.address or self.address == None or other.address == None)
+        equal_firstname = self.firstname == other.firstname or (self.firstname == None and other.firstname =='') or\
+                          (self.firstname == "" and other.firstname ==None)
+        equal_lastname = self.lastname == other.lastname or (self.lastname == None and other.lastname == '') or \
+                          (self.lastname == "" and other.lastname == None)
+        equal_address = self.address == other.address or (self.address == None and other.address == '') or \
+                          (self.address == "" and other.address == None)
+        equal_id = self.id == None or other.id == None or self.id == other.id
+
+        return equal_address and equal_firstname and equal_lastname and equal_id
 
     def id_or_max(self):
         return int(self.id) if self.id else maxsize
