@@ -1,7 +1,7 @@
 import random
 
 
-def test_equal_info_on_home_and_edit_page(app):
+def test_equal_info_on_home_and_edit_contact_page(app):
     # Given
     app.contact.contact_must_exist()
     index = random.randrange(app.contact.get_count_contact())
