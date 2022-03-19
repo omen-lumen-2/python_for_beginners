@@ -6,7 +6,7 @@ class Session:
     def login(self, login, password):
         wd = self.app.wd
         # open authorize page
-        wd.get("http://localhost/addressbook/")
+        wd.get(self.app.base_url)
         # input login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
@@ -38,7 +38,6 @@ class Session:
             else:
                 self.logout()
         self.login(login=login, password=password)
-
 
     def ensure_logout(self):
         if self.is_logged_in():
