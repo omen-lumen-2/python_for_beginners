@@ -2,3 +2,5 @@
 venv/
 /tests/geckodriver.log
 /geckodriver.log
+/data/groups.json
+/data/contacts.json
