@@ -21,6 +21,9 @@ class ContactHelper:
         self.app.action.type_in_input_field_with_name(name="email", input_value=contact.email)
         self.app.action.type_in_input_field_with_name(name="email2", input_value=contact.email2)
         self.app.action.type_in_input_field_with_name(name="email3", input_value=contact.email3)
+        # group
+        self.app.action.select_option_on_value(name_select='new_group', group_id=contact.group_id)
+
 
     def create(self, contact):
         wd = self.app.wd

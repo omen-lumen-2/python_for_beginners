@@ -5,7 +5,7 @@ from model.group import Group
 
 
 def test_delete_groups(app, db, check_ui):
-    app.group.group_must_exist(db.get_group_list())
+    app.group.group_must_exist(len(db.get_group_list()))
     old_groups = db.get_group_list()
     group = choice(old_groups)
 

@@ -6,7 +6,7 @@ from model.сontact import Contact
 
 
 def test_update_contact(app, db, check_ui):
-    app.contact.contact_must_exist(db.get_contact_list())
+    app.contact.contact_must_exist(len(db.get_contact_list()))
     old_contacts = db.get_contact_list()
     old_contact = choice(old_contacts)
     contact = Contact(firstname=random_string(prefix='firstname', maxlen=5),
@@ -29,7 +29,7 @@ def test_update_contact(app, db, check_ui):
 
 
 def test_update_only_firstname_of_contact(app, db, check_ui):
-    app.contact.contact_must_exist(db.get_contact_list())
+    app.contact.contact_must_exist(len(db.get_contact_list()))
     old_contacts = db.get_contact_list()
     old_contact = choice(old_contacts)
     contact = Contact(id = old_contact.id, firstname=random_string(prefix='firstname', maxlen=5))

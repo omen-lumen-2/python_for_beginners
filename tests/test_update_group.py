@@ -6,7 +6,7 @@ from model.group import Group
 
 
 def test_update_group(app, db, check_ui):
-    app.group.group_must_exist(db.get_group_list())
+    app.group.group_must_exist(len(db.get_group_list()))
     old_groups = db.get_group_list()
     old_group = choice(old_groups)
     updated_group = Group(
@@ -27,7 +27,7 @@ def test_update_group(app, db, check_ui):
 
 
 def test_update_only_name_of_group(app, db, check_ui):
-    app.group.group_must_exist(db.get_group_list())
+    app.group.group_must_exist(len(db.get_group_list()))
     old_groups = db.get_group_list()
     old_group = choice(old_groups)
     updated_group = Group(name=f"test update name{random_int()}", id=old_group.id)

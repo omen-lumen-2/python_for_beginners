@@ -5,7 +5,7 @@ from sys import maxsize
 class Contact:
     def __init__(self, id=None, firstname=None, middlename=None, lastname=None, address=None,
                  homephone=None, mobilephone=None, workphone=None, secondaryphone=None,
-                 email=None, email2=None, email3=None, all_email_address=None, all_phones=None):
+                 email=None, email2=None, email3=None, all_email_address=None, all_phones=None, group_id=None):
         self.id = id
         self.firstname = firstname
         self.middlename = middlename
@@ -23,6 +23,8 @@ class Contact:
         # accumulate variable
         self.all_email_address = all_email_address
         self.all_phones = all_phones
+        # group
+        self.group_id = group_id
 
     def __repr__(self):
         return f"id:{self.id}, firstname:{self.firstname}, middlename:{self.middlename}, lastname:{self.lastname}, " \
