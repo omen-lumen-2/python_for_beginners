@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
-from random import randrange
+from random import choice
 
 from model.group import Group
 
 
-def test_delete_groups(app):
-    app.group.group_must_exist()
-    old_groups = app.group.get_group_list()
-    index = randrange(len(old_groups))
-    app.group.delete_group_by_index(index=index)
-    assert len(old_groups) - 1 == app.group.get_count_group()
+def test_delete_groups(app, db, check_ui):
+    app.group.group_must_exist(db.get_group_list())
+    old_groups = db.get_group_list()
+    group = choice(old_groups)
+
+    app.group.delete_group_by_id(id=group.id)
+
     new_groups = app.group.get_group_list()
-    del old_groups[index]
+    old_groups.remove(group)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
+    if check_ui:
+        assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)

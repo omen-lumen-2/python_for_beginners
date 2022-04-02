@@ -52,6 +52,21 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    def update_contact_by_id(self, contact, id):
+        wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        # select edit element of table by id
+        self.open_contact_for_edit_by_id(id)
+        # fill contact group
+        self.fill_contact_group_form(contact)
+        # submit
+        wd.find_element_by_xpath("//input[@name='update']").click()
+        # click in dialog to return home page
+        wd.find_element_by_xpath("//div[@class='msgbox']//a").click()
+        # invalidate contact cash
+        self.contact_cash = None
+
     def delete_contact_by_index(self, index):
         wd = self.app.wd
         # go to home page
@@ -69,12 +84,29 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
-    def contact_must_exist(self):
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        # select contact in list of exist contacts by id
+        wd.find_element_by_xpath(f"//input[@value='{id}']").click()
+        # select DELETE
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        # submit deleting on dialog
+        wd.switch_to.alert.accept()
+        # wait update screen
+        wd.find_element_by_xpath("//input[@name='searchstring']").click()
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        # invalidate contact cash
+        self.contact_cash = None
+
+    def contact_must_exist(self, count_contact):
         wd = self.app.wd
         # go to home page
         self.app.navigation.go_to_home_page()
         # create contact if contact not exist
-        if self.get_count_contact() == 0:
+        if count_contact == 0:
             self.create(contact=Contact(firstname=f"Test_name{randint(1,100)}",
                                   middlename=f"Test_middlename{randint(1,100)}",
                                   email=f"{randint(1,100)}@test.test"))
@@ -119,6 +151,10 @@ class ContactHelper:
     def open_contact_for_edit_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//img[@title='Edit']/..")[index].click()
+
+    def open_contact_for_edit_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_xpath(f"//a[contains(@href,'edit.php?id={id}')]").click()
 
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd

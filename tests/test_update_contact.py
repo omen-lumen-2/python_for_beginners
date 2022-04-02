@@ -1,46 +1,47 @@
 # -*- coding: utf-8 -*-
-from random import randrange
+from random import choice
 
-from common.data_generator import random_int, random_email, random_string
+from common.data_generator import random_email, random_string
 from model.сontact import Contact
 
 
-def test_update_contact(app):
-    # Given
-    app.contact.contact_must_exist()
-    old_contacts = app.contact.get_contact_list()
-    index = randrange(len(old_contacts))
-    index = 0
+def test_update_contact(app, db, check_ui):
+    app.contact.contact_must_exist(db.get_contact_list())
+    old_contacts = db.get_contact_list()
+    old_contact = choice(old_contacts)
     contact = Contact(firstname=random_string(prefix='firstname', maxlen=5),
                       lastname=random_string(prefix='lastname', maxlen=5),
                       email=random_email(),
                       email2=random_email(),
-                      email3=random_email())
+                      email3=random_email(),
+                      id=old_contact.id)
 
-    # When
-    app.contact.update_contact_by_index(contact=contact, index=index)
-    # Then
-    contact.id = old_contacts[index].id
-    contact.address = old_contacts[index].address
-    assert len(old_contacts) == app.contact.get_count_contact()
-    old_contacts[index] = contact
-    new_contacts = app.contact.get_contact_list()
+    app.contact.update_contact_by_id(contact=contact, id=contact.id)
+
+    contact.address = old_contact.address
+    old_contacts.remove(old_contact)
+    old_contacts.append(contact)
+    new_contacts = db.get_contact_list()
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
+                                                                     key=Contact.id_or_max)
 
 
-def test_update_only_firstname_of_contact(app):
-    # Given
-    app.contact.contact_must_exist()
-    old_contacts = app.contact.get_contact_list()
-    index = randrange(len(old_contacts))
-    contact = Contact(firstname=random_string(prefix='firstname', maxlen=5))
-    # When
-    app.contact.update_contact_by_index(contact=contact, index=index)
-    # Then
-    contact.lastname = old_contacts[index].lastname
-    contact.id = old_contacts[index].id
-    contact.address = old_contacts[index].address
-    assert len(old_contacts) == app.contact.get_count_contact()
-    old_contacts[index] = contact
-    new_contacts = app.contact.get_contact_list()
+def test_update_only_firstname_of_contact(app, db, check_ui):
+    app.contact.contact_must_exist(db.get_contact_list())
+    old_contacts = db.get_contact_list()
+    old_contact = choice(old_contacts)
+    contact = Contact(id = old_contact.id, firstname=random_string(prefix='firstname', maxlen=5))
+
+    app.contact.update_contact_by_id(contact=contact, id=old_contact.id)
+
+    contact.lastname = old_contact.lastname
+    contact.address = old_contact.address
+    old_contacts.remove(old_contact)
+    old_contacts.append(contact)
+    new_contacts = db.get_contact_list()
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
+                                                                     key=Contact.id_or_max)

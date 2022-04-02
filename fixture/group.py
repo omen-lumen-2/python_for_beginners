@@ -45,6 +45,23 @@ class GroupHelper:
         # invalidate group cash
         self.group_cash = None
 
+    def update_group_by_id(self, group, id):
+        wd = self.app.wd
+        # open groups page
+        self.app.navigation.go_to_group_page()
+        # select group in list of exist group by id
+        self.select_group_by_id(id=id)
+        # select Edit GROUP
+        wd.find_element_by_xpath("//input[@name='edit']").click()
+        # set new values
+        self.fill_group_form(group)
+        # approve creation new group
+        wd.find_element_by_name("update").click()
+        # open groups page
+        self.app.navigation.go_to_group_page()
+        # invalidate group cash
+        self.group_cash = None
+
     def delete_group_by_index(self, index):
         wd = self.app.wd
         # open groups page
@@ -62,11 +79,28 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_elements_by_xpath(f"//input[@name='selected[]']")[index].click()
 
-    def group_must_exist(self):
+    def delete_group_by_id(self, id):
+        wd = self.app.wd
+        # open groups page
+        self.app.navigation.go_to_group_page()
+        # select group in list of exist group by id
+        self.select_group_by_id(id=id)
+        # select DELETE GROUP(s)
+        wd.find_element_by_xpath("//input[@name='delete']").click()
+        # open groups page
+        self.app.navigation.go_to_group_page()
+        # invalidate group cash
+        self.group_cash = None
+
+    def select_group_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_xpath(f"//input[@value='{id}']").click()
+
+    def group_must_exist(self, count_group):
         # open groups page
         self.app.navigation.go_to_group_page()
         # create group if group not exist
-        if self.get_count_group() == 0:
+        if count_group == 0:
             self.create(group=Group(name=f"Test_name{randint(1,100)}",
                                     header=f"Test_header{randint(1,100)}",
                                     footer=f"Test_footer{randint(1,100)}"))
