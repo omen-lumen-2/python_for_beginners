@@ -51,17 +51,13 @@ class Contact:
         raw_phones=[self.homephone, self.mobilephone, self.workphone, self.secondaryphone]
         phones = list(filter(lambda x: x != '',
                              map(self.clear_number_phone, filter(lambda x: x is not None, raw_phones))))
-        if phones == []:
-            return ''
         return '\n'.join(phones)
 
     def merge_email(self):
-        raw_email=[self.email, self.email2, self.email3]
+        raw_email = [self.email, self.email2, self.email3]
         emails = list(filter(lambda x: x is not None and x != '', raw_email))
-        if emails == []:
-            return ''
         return '\n'.join(emails)
 
     @staticmethod
     def clear_number_phone(number):
-        return re.sub(r'[-() ]','', number)
+        return re.sub(r'[-() ]', '', number)

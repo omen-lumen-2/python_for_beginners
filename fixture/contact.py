@@ -132,7 +132,7 @@ class ContactHelper:
                 firstname = elements.find_element_by_xpath(".//td[3]").text
                 address = elements.find_element_by_xpath(".//td[4]").text
                 all_email_address = elements.find_element_by_xpath(".//td[5]").text
-                all_phones = elements.find_element_by_xpath(".//td[6]").text.splitlines()
+                all_phones = elements.find_element_by_xpath(".//td[6]").text
                 self.contact_cash.append(Contact(id=id, firstname=firstname, lastname=lastname, address=address,
                             all_email_address=all_email_address, all_phones=all_phones))
         return self.contact_cash.copy()
