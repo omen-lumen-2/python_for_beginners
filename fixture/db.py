@@ -53,11 +53,30 @@ class DbFixture:
             cursor.close()
         return list
 
+    def get_contact_id_list_by_link_group(self, link_to_group):
+        list = []
+        cursor = self.connection.cursor()
+        try:
+            cursor.execute(f"""SELECT id FROM addressbook as ab
+              WHERE {'EXISTS' if link_to_group else 'NOT EXISTS'} (
+                SELECT id from address_in_groups AS ag
+                 WHERE ab.id = ag.id
+                 )""")
+            for row in cursor:
+                list.append(str(row[0]))
+        finally:
+            cursor.close()
+        return list
+
     def get_group_of_contact(self, contact_id):
         result = None
         cursor = self.connection.cursor()
         try:
-            cursor.execute(f"""SELECT group_id FROM address_in_groups WHERE id={contact_id}""")
+            cursor.execute(f"""SELECT ag.group_id FROM address_in_groups as ag
+                            WHERE ag.id = {contact_id} and modified =
+                            (SELECT MAX(pod_ag.modified)
+                             FROM `address_in_groups` as pod_ag
+                              WHERE pod_ag.id={contact_id})""")
             result = cursor.fetchone()
         finally:
             cursor.close()

@@ -70,6 +70,19 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    def add_contact_to_group(self, contact_id, group_id):
+        wd = self.app.wd
+        # go to home page
+        self.app.navigation.go_to_home_page()
+        # select contact in list of exist contacts by id
+        wd.find_element_by_xpath(f"//input[@value='{contact_id}']").click()
+        # group
+        self.app.action.select_option_on_value(name_select='to_group', group_id=group_id)
+        # submit add
+        wd.find_element_by_xpath("//input[@name='add']").click()
+        # go to home page
+        self.app.navigation.go_to_home_page()
+
     def delete_contact_by_index(self, index):
         wd = self.app.wd
         # go to home page
