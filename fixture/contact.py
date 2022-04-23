@@ -1,5 +1,7 @@
 from random import randint
 
+import allure
+
 from model.сontact import Contact
 
 
@@ -7,6 +9,7 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    @allure.step("Заполнение формы создания контакта")
     def fill_contact_group_form(self, contact):
         self.app.action.type_in_input_field_with_name(name="firstname", input_value=contact.firstname)
         self.app.action.type_in_input_field_with_name(name="lastname", input_value=contact.lastname)
@@ -24,7 +27,7 @@ class ContactHelper:
         # group
         self.app.action.select_option_on_value(name_select='new_group', group_id=contact.group_id)
 
-
+    @allure.step("Создание нового контакта")
     def create(self, contact):
         wd = self.app.wd
         # go to home page
@@ -40,6 +43,7 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    @allure.step("Обновление контакта по индексу")
     def update_contact_by_index(self, contact, index):
         wd = self.app.wd
         # go to home page
@@ -55,6 +59,7 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    @allure.step("Обновление контакта по идентификатору")
     def update_contact_by_id(self, contact, id):
         wd = self.app.wd
         # go to home page
@@ -70,6 +75,7 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    @allure.step("Добавление контакта в группу")
     def add_contact_to_group(self, contact_id, group_id):
         wd = self.app.wd
         # go to home page
@@ -83,6 +89,7 @@ class ContactHelper:
         # go to home page
         self.app.navigation.go_to_home_page()
 
+    @allure.step("Удаление контакта по индексу")
     def delete_contact_by_index(self, index):
         wd = self.app.wd
         # go to home page
@@ -100,6 +107,7 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    @allure.step("Удаление контакта по идентификатору")
     def delete_contact_by_id(self, id):
         wd = self.app.wd
         # go to home page
@@ -117,6 +125,7 @@ class ContactHelper:
         # invalidate contact cash
         self.contact_cash = None
 
+    @allure.step("Проверка существования контакта")
     def contact_must_exist(self, count_contact):
         wd = self.app.wd
         # go to home page
@@ -127,12 +136,14 @@ class ContactHelper:
                                   middlename=f"Test_middlename{randint(1,100)}",
                                   email=f"{randint(1,100)}@test.test"))
 
+    @allure.step("Получение количества контактов")
     def get_count_contact(self):
         wd = self.app.wd
         return len(wd.find_elements_by_xpath("//input[@name='selected[]']"))
 
     contact_cash = None
 
+    @allure.step("Получение списка доступных фильмов")
     def get_contact_list(self):
         if self.contact_cash is None:
             wd = self.app.wd
@@ -150,6 +161,7 @@ class ContactHelper:
                             all_email_address=all_email_address, all_phones=all_phones))
         return self.contact_cash.copy()
 
+    @allure.step("Получение информации контакта с домашней страницы")
     def get_contact_info_from_home_page(self, index):
         wd = self.app.wd
         # go to home page
@@ -164,14 +176,17 @@ class ContactHelper:
         return Contact(id=id, firstname=firstname, lastname=lastname, address=address,
                        all_email_address=all_email_address, all_phones=all_phones)
 
+    @allure.step("Переход на страницу редактирования контактка по индексу")
     def open_contact_for_edit_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//img[@title='Edit']/..")[index].click()
 
+    @allure.step("Переход на страницу редактирования контакта по идетификатору")
     def open_contact_for_edit_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_xpath(f"//a[contains(@href,'edit.php?id={id}')]").click()
 
+    @allure.step("Получение информации контакта со страницы редактирования")
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
         self.open_contact_for_edit_by_index(index)

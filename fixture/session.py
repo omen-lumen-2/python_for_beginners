@@ -1,8 +1,11 @@
+import allure
+
 
 class Session:
     def __init__(self, app):
         self.app = app
 
+    @allure.step
     def login(self, login, password):
         wd = self.app.wd
         # open authorize page
@@ -18,6 +21,7 @@ class Session:
         # submit
         wd.find_element_by_xpath("//input[@value='Login']").click()
 
+    @allure.step
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()

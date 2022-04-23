@@ -1,3 +1,4 @@
+import allure
 import pymysql
 
 from model.group import Group
@@ -17,6 +18,7 @@ class DbFixture:
                                           autocommit=True
                                           )
 
+    @allure.step("Получение списка групп через бд")
     def get_group_list(self):
         list_group = []
         cursor = self.connection.cursor()
@@ -29,6 +31,7 @@ class DbFixture:
             cursor.close()
         return list_group
 
+    @allure.step("Получение списка контактов через бд")
     def get_contact_list(self):
         list = []
         cursor = self.connection.cursor()
@@ -53,6 +56,7 @@ class DbFixture:
             cursor.close()
         return list
 
+    @allure.step("Получение списка идентификаторов контактов прилинкованных к группам")
     def get_contact_id_list_by_link_group(self, link_to_group):
         list = []
         cursor = self.connection.cursor()
@@ -68,6 +72,7 @@ class DbFixture:
             cursor.close()
         return list
 
+    @allure.step("Получение группы контакта")
     def get_group_of_contact(self, contact_id):
         result = None
         cursor = self.connection.cursor()
@@ -82,6 +87,7 @@ class DbFixture:
             cursor.close()
         return str(result[0])
 
+    @allure.step("Получение списка контактов прилинкованных к группам")
     def get_contacts_id_with_group(self):
         cursor = self.connection.cursor()
         try:
@@ -92,6 +98,7 @@ class DbFixture:
             cursor.close()
         return [i[0] for i in result]
 
+    @allure.step("Получение идентификатора последнего созданного контакта")
     def get_last_create_contact_id(self):
         cursor = self.connection.cursor()
         try:
