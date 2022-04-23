@@ -1,0 +1,206 @@
+{\rtf1\ansi\ansicpg1251\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red0\green0\blue233;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c0\c0\c93333;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Started by user {\field{\*\fldinst{HYPERLINK "http://localhost:8080/user/admin"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 admin}}\
+Running as SYSTEM\
+Building in workspace /Users/user/.jenkins/workspace/address book tests\
+The recommended git tool is: NONE\
+No credentials specified\
+ > /usr/local/bin/git rev-parse --resolve-git-dir /Users/user/.jenkins/workspace/address book tests/.git # timeout=10\
+Fetching changes from the remote Git repository\
+ > /usr/local/bin/git config remote.origin.url {\field{\*\fldinst{HYPERLINK "https://github.com/omen-lumen-2/python_for_beginners"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 https://github.com/omen-lumen-2/python_for_beginners}} # timeout=10\
+Fetching upstream changes from {\field{\*\fldinst{HYPERLINK "https://github.com/omen-lumen-2/python_for_beginners"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 https://github.com/omen-lumen-2/python_for_beginners}}\
+ > /usr/local/bin/git --version # timeout=10\
+ > git --version # 'git version 2.23.0'\
+ > /usr/local/bin/git fetch --tags --force --progress -- {\field{\*\fldinst{HYPERLINK "https://github.com/omen-lumen-2/python_for_beginners"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 https://github.com/omen-lumen-2/python_for_beginners}} +refs/heads/*:refs/remotes/origin/* # timeout=10\
+ > /usr/local/bin/git rev-parse refs/remotes/origin/master^\{commit\} # timeout=10\
+Checking out Revision 0d4e1b5d8c98cecfb9ae58d832b6e35f4f08035d (refs/remotes/origin/master)\
+ > /usr/local/bin/git config core.sparsecheckout # timeout=10\
+ > /usr/local/bin/git checkout -f 0d4e1b5d8c98cecfb9ae58d832b6e35f4f08035d # timeout=10\
+Commit message: "add requirements.txt"\
+ > /usr/local/bin/git rev-list --no-walk 0d4e1b5d8c98cecfb9ae58d832b6e35f4f08035d # timeout=10\
+[address book tests] $ /bin/sh -xe /var/folders/jh/zvcc_yc53z3bny4qf5nm_4qm0000gn/T/shiningpanda3570959868902906381.sh\
++ pip3 install -r requirements.txt\
+Requirement already satisfied: async-generator==1.10 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 1)) (1.10)\
+Requirement already satisfied: attrs==21.4.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 2)) (21.4.0)\
+Requirement already satisfied: certifi==2021.10.8 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 3)) (2021.10.8)\
+Requirement already satisfied: cffi==1.15.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 4)) (1.15.0)\
+Requirement already satisfied: cryptography==36.0.2 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 5)) (36.0.2)\
+Requirement already satisfied: glob2==0.7 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 6)) (0.7)\
+Requirement already satisfied: h11==0.13.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 7)) (0.13.0)\
+Requirement already satisfied: idna==3.3 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 8)) (3.3)\
+Requirement already satisfied: iniconfig==1.1.1 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 9)) (1.1.1)\
+Requirement already satisfied: jsonpickle==2.1.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 10)) (2.1.0)\
+Requirement already satisfied: Mako==1.2.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 11)) (1.2.0)\
+Requirement already satisfied: MarkupSafe==2.1.1 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 12)) (2.1.1)\
+Requirement already satisfied: outcome==1.1.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 13)) (1.1.0)\
+Requirement already satisfied: packaging==21.3 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 14)) (21.3)\
+Requirement already satisfied: parse==1.19.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 15)) (1.19.0)\
+Requirement already satisfied: parse-type==0.6.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 16)) (0.6.0)\
+Requirement already satisfied: pluggy==1.0.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 17)) (1.0.0)\
+Requirement already satisfied: py==1.11.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 18)) (1.11.0)\
+Requirement already satisfied: pycparser==2.21 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 19)) (2.21)\
+Requirement already satisfied: PyMySQL==1.0.2 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 20)) (1.0.2)\
+Requirement already satisfied: pyOpenSSL==22.0.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 21)) (22.0.0)\
+Requirement already satisfied: pyparsing==3.0.8 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 22)) (3.0.8)\
+Requirement already satisfied: PySocks==1.7.1 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 23)) (1.7.1)\
+Requirement already satisfied: pytest==7.1.1 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 24)) (7.1.1)\
+Requirement already satisfied: pytest-bdd==5.0.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 25)) (5.0.0)\
+Requirement already satisfied: selenium==4.1.3 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 26)) (4.1.3)\
+Requirement already satisfied: six==1.16.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 27)) (1.16.0)\
+Requirement already satisfied: sniffio==1.2.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 28)) (1.2.0)\
+Requirement already satisfied: sortedcontainers==2.4.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 29)) (2.4.0)\
+Requirement already satisfied: tomli==2.0.1 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 30)) (2.0.1)\
+Requirement already satisfied: trio==0.20.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 31)) (0.20.0)\
+Requirement already satisfied: trio-websocket==0.9.2 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 32)) (0.9.2)\
+Requirement already satisfied: urllib3==1.26.9 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 33)) (1.26.9)\
+Requirement already satisfied: wsproto==1.1.0 in /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 34)) (1.1.0)\
++ pytest --junitxml=result.xml tests/test_check_info_about_contact.py\
+============================= test session starts ==============================\
+platform darwin -- Python 3.8.0, pytest-7.1.1, pluggy-1.0.0\
+rootdir: /Users/user/.jenkins/workspace/address book tests\
+plugins: bdd-5.0.0\
+collected 2 items\
+\
+tests/test_check_info_about_contact.py ..                                [100%]\
+\
+=============================== warnings summary ===============================\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:28: DeprecationWarning: find_elements_by_link_text is deprecated. Please use find_elements(by=By.LINK_TEXT, value=text) instead\
+    return len(wd.find_elements_by_link_text("Logout")) > 0\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:11: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("user").click()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:12: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("user").clear()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:13: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("user").send_keys(login)\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:15: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("pass").click()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:16: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("pass").clear()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:17: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("pass").send_keys(password)\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:19: DeprecationWarning: find_element_by_xpath is deprecated. Please use find_element(by=By.XPATH, value=xpath) instead\
+    wd.find_element_by_xpath("//input[@value='Login']").click()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/navigation.py:13: DeprecationWarning: find_elements_by_xpath is deprecated. Please use find_elements(by=By.XPATH, value=xpath) instead\
+    len(wd.find_elements_by_xpath("//input[@name='searchstring']")) > 0):\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:132: DeprecationWarning: find_elements_by_xpath is deprecated. Please use find_elements(by=By.XPATH, value=xpath) instead\
+    return len(wd.find_elements_by_xpath("//input[@name='selected[]']"))\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:157: DeprecationWarning: find_element_by_xpath is deprecated. Please use find_element(by=By.XPATH, value=xpath) instead\
+    row_table = wd.find_element_by_xpath(f"//tr[@name='entry'][\{index+1\}]")\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages/selenium/webdriver/remote/webelement.py:227: UserWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    warnings.warn("find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead")\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/shiningpanda/jobs/ed1a3aa5/virtualenvs/d41d8cd9/lib/python3.8/site-packages/selenium/webdriver/remote/webelement.py:393: UserWarning: find_element_by_xpath is deprecated. Please use find_element(by=By.XPATH, value=xpath) instead\
+    warnings.warn("find_element_by_xpath is deprecated. Please use find_element(by=By.XPATH, value=xpath) instead")\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:169: DeprecationWarning: find_elements_by_xpath is deprecated. Please use find_elements(by=By.XPATH, value=xpath) instead\
+    wd.find_elements_by_xpath("//img[@title='Edit']/..")[index].click()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:178: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    id = wd.find_element_by_name('id').get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:179: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    firstname = wd.find_element_by_name("firstname").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:180: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    lastname = wd.find_element_by_name("lastname").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:181: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    address = wd.find_element_by_name("address").text\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:183: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    homephone = wd.find_element_by_name("home").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:184: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    workphone = wd.find_element_by_name("work").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:185: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    mobilephone = wd.find_element_by_name("mobile").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:186: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    secondaryphone = wd.find_element_by_name("phone2").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:188: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    email = wd.find_element_by_name("email").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:189: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    email2 = wd.find_element_by_name("email2").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_and_edit_contact_page\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:190: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    email3 = wd.find_element_by_name("email3").get_attribute('value')\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:32: DeprecationWarning: find_element_by_xpath is deprecated. Please use find_element(by=By.XPATH, value=xpath) instead\
+    return wd.find_element_by_xpath("//div/div[1]/form/b").text == f"(\{user_name\})"\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/workspace/address book tests/fixture/navigation.py:14: DeprecationWarning: find_element_by_link_text is deprecated. Please use find_element(by=By.LINK_TEXT, value=link_text) instead\
+    wd.find_element_by_link_text("home").click()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/workspace/address book tests/fixture/contact.py:142: DeprecationWarning: find_elements_by_xpath is deprecated. Please use find_elements(by=By.XPATH, value=xpath) instead\
+    for elements in wd.find_elements_by_xpath("//tr[@name='entry']"):\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:23: DeprecationWarning: find_element_by_link_text is deprecated. Please use find_element(by=By.LINK_TEXT, value=link_text) instead\
+    wd.find_element_by_link_text("Logout").click()\
+\
+tests/test_check_info_about_contact.py::test_equal_info_on_home_page_and_bd\
+  /Users/user/.jenkins/workspace/address book tests/fixture/session.py:24: DeprecationWarning: find_element_by_name is deprecated. Please use find_element(by=By.NAME, value=name) instead\
+    wd.find_element_by_name("user")\
+\
+-- Docs: {\field{\*\fldinst{HYPERLINK "https://docs.pytest.org/en/stable/how-to/capture-warnings.html"}}{\fldrslt \cf3 \ul \ulc3 \strokec3 https://docs.pytest.org/en/stable/how-to/capture-warnings.html}}\
+- generated xml file: /Users/user/.jenkins/workspace/address book tests/result.xml -\
+======================== 2 passed, 36 warnings in 8.21s ========================\
+Recording test results\
+[Checks API] No suitable checks publisher found.\
+Finished: SUCCESS\
+}
